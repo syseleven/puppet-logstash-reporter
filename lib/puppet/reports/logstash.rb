@@ -66,6 +66,7 @@ Puppet::Reports.register_report(:logstash) do
         ls.close
       end
     rescue Exception => e
+      Puppet.err("logstash failed: #{e.backtrace}")
       Puppet.err("Failed to write to #{CONFIG[:host]} on port #{CONFIG[:port]}: #{e.message}")
     end
   end
